@@ -1,0 +1,4 @@
+/home/pzx/atpdxy/build/CMakeFiles/atpdxy.dir
+/home/pzx/atpdxy/build/CMakeFiles/test_log.dir
+/home/pzx/atpdxy/build/CMakeFiles/edit_cache.dir
+/home/pzx/atpdxy/build/CMakeFiles/rebuild_cache.dir
