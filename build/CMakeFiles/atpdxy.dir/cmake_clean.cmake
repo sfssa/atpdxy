@@ -3,6 +3,8 @@ file(REMOVE_RECURSE
   "/home/pzx/atpdxy/lib/libatpdxy.so"
   "CMakeFiles/atpdxy.dir/atpdxy/log.cpp.o"
   "CMakeFiles/atpdxy.dir/atpdxy/log.cpp.o.d"
+  "CMakeFiles/atpdxy.dir/atpdxy/util.cpp.o"
+  "CMakeFiles/atpdxy.dir/atpdxy/util.cpp.o.d"
 )
 
 # Per-language clean rules from dependency scanning.

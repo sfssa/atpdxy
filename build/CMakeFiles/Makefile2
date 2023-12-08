@@ -86,12 +86,12 @@ clean: CMakeFiles/test_log.dir/clean
 CMakeFiles/atpdxy.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/atpdxy.dir/build.make CMakeFiles/atpdxy.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/atpdxy.dir/build.make CMakeFiles/atpdxy.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pzx/atpdxy/build/CMakeFiles --progress-num=1,2 "Built target atpdxy"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pzx/atpdxy/build/CMakeFiles --progress-num=1,2,3 "Built target atpdxy"
 .PHONY : CMakeFiles/atpdxy.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/atpdxy.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pzx/atpdxy/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pzx/atpdxy/build/CMakeFiles 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/atpdxy.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/pzx/atpdxy/build/CMakeFiles 0
 .PHONY : CMakeFiles/atpdxy.dir/rule
@@ -112,12 +112,12 @@ CMakeFiles/atpdxy.dir/clean:
 CMakeFiles/test_log.dir/all: CMakeFiles/atpdxy.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_log.dir/build.make CMakeFiles/test_log.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_log.dir/build.make CMakeFiles/test_log.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pzx/atpdxy/build/CMakeFiles --progress-num=3,4 "Built target test_log"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pzx/atpdxy/build/CMakeFiles --progress-num=4,5 "Built target test_log"
 .PHONY : CMakeFiles/test_log.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_log.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pzx/atpdxy/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pzx/atpdxy/build/CMakeFiles 5
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_log.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/pzx/atpdxy/build/CMakeFiles 0
 .PHONY : CMakeFiles/test_log.dir/rule

@@ -169,6 +169,30 @@ atpdxy/log.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/atpdxy.dir/build.make CMakeFiles/atpdxy.dir/atpdxy/log.cpp.s
 .PHONY : atpdxy/log.cpp.s
 
+atpdxy/util.o: atpdxy/util.cpp.o
+.PHONY : atpdxy/util.o
+
+# target to build an object file
+atpdxy/util.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/atpdxy.dir/build.make CMakeFiles/atpdxy.dir/atpdxy/util.cpp.o
+.PHONY : atpdxy/util.cpp.o
+
+atpdxy/util.i: atpdxy/util.cpp.i
+.PHONY : atpdxy/util.i
+
+# target to preprocess a source file
+atpdxy/util.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/atpdxy.dir/build.make CMakeFiles/atpdxy.dir/atpdxy/util.cpp.i
+.PHONY : atpdxy/util.cpp.i
+
+atpdxy/util.s: atpdxy/util.cpp.s
+.PHONY : atpdxy/util.s
+
+# target to generate assembly for a file
+atpdxy/util.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/atpdxy.dir/build.make CMakeFiles/atpdxy.dir/atpdxy/util.cpp.s
+.PHONY : atpdxy/util.cpp.s
+
 tests/test_log.o: tests/test_log.cpp.o
 .PHONY : tests/test_log.o
 
@@ -206,6 +230,9 @@ help:
 	@echo "... atpdxy/log.o"
 	@echo "... atpdxy/log.i"
 	@echo "... atpdxy/log.s"
+	@echo "... atpdxy/util.o"
+	@echo "... atpdxy/util.i"
+	@echo "... atpdxy/util.s"
 	@echo "... tests/test_log.o"
 	@echo "... tests/test_log.i"
 	@echo "... tests/test_log.s"

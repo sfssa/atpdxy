@@ -9,7 +9,8 @@ include_directories(/usr/local/include)
 link_directories(/usr/local/lib)
 
 set(LIB_SRC
-    atpdxy/log.cpp)
+    atpdxy/log.cpp
+    atpdxy/util.cpp)
 
 add_library(atpdxy SHARED ${LIB_SRC})
 find_library(YAMLCPP yaml-cpp)

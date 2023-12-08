@@ -221,10 +221,55 @@ CMakeFiles/test_log.dir/tests/test_log.cpp.o: /home/pzx/atpdxy/tests/test_log.cp
   /usr/include/c++/9/bits/stl_tree.h \
   /usr/include/c++/9/bits/stl_map.h \
   /usr/include/c++/9/bits/stl_multimap.h \
-  /usr/include/c++/9/bits/erase_if.h
+  /usr/include/c++/9/bits/erase_if.h \
+  /home/pzx/atpdxy/atpdxy/singleton.h \
+  /home/pzx/atpdxy/atpdxy/util.h \
+  /usr/include/unistd.h \
+  /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
+  /usr/include/x86_64-linux-gnu/bits/environments.h \
+  /usr/include/x86_64-linux-gnu/bits/confname.h \
+  /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
+  /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
+  /usr/include/x86_64-linux-gnu/sys/syscall.h \
+  /usr/include/x86_64-linux-gnu/asm/unistd.h \
+  /usr/include/x86_64-linux-gnu/asm/unistd_64.h \
+  /usr/include/x86_64-linux-gnu/bits/syscall.h \
+  /usr/include/c++/9/iomanip \
+  /usr/include/c++/9/locale \
+  /usr/include/c++/9/bits/locale_facets_nonio.h \
+  /usr/include/c++/9/ctime \
+  /usr/include/x86_64-linux-gnu/c++/9/bits/time_members.h \
+  /usr/include/x86_64-linux-gnu/c++/9/bits/messages_members.h \
+  /usr/include/libintl.h \
+  /usr/include/c++/9/bits/locale_facets_nonio.tcc \
+  /usr/include/c++/9/bits/locale_conv.h
 
+
+/usr/include/c++/9/bits/locale_facets_nonio.tcc:
+
+/usr/include/x86_64-linux-gnu/c++/9/bits/time_members.h:
+
+/usr/include/c++/9/bits/locale_facets_nonio.h:
+
+/usr/include/c++/9/iomanip:
+
+/usr/include/x86_64-linux-gnu/asm/unistd_64.h:
+
+/usr/include/x86_64-linux-gnu/asm/unistd.h:
+
+/usr/include/x86_64-linux-gnu/bits/unistd_ext.h:
+
+/usr/include/x86_64-linux-gnu/bits/confname.h:
+
+/usr/include/x86_64-linux-gnu/bits/posix_opt.h:
+
+/home/pzx/atpdxy/atpdxy/util.h:
 
 /usr/include/c++/9/map:
+
+/usr/include/c++/9/locale:
 
 /usr/include/c++/9/vector:
 
@@ -263,6 +308,8 @@ CMakeFiles/test_log.dir/tests/test_log.cpp.o: /home/pzx/atpdxy/tests/test_log.cp
 /usr/include/c++/9/ios:
 
 /usr/include/c++/9/istream:
+
+/usr/include/x86_64-linux-gnu/bits/unistd.h:
 
 /usr/include/c++/9/sstream:
 
@@ -322,6 +369,8 @@ CMakeFiles/test_log.dir/tests/test_log.cpp.o: /home/pzx/atpdxy/tests/test_log.cp
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:
 
+/home/pzx/atpdxy/atpdxy/singleton.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
 
 /usr/include/stdio.h:
@@ -360,6 +409,8 @@ CMakeFiles/test_log.dir/tests/test_log.cpp.o: /home/pzx/atpdxy/tests/test_log.cp
 
 /usr/include/x86_64-linux-gnu/bits/wchar.h:
 
+/usr/include/x86_64-linux-gnu/bits/getopt_core.h:
+
 /usr/include/c++/9/debug/debug.h:
 
 /usr/include/x86_64-linux-gnu/c++/9/bits/cpu_defines.h:
@@ -383,6 +434,8 @@ CMakeFiles/test_log.dir/tests/test_log.cpp.o: /home/pzx/atpdxy/tests/test_log.cp
 /usr/include/c++/9/ext/new_allocator.h:
 
 /usr/include/x86_64-linux-gnu/bits/wordsize.h:
+
+/usr/include/x86_64-linux-gnu/bits/getopt_posix.h:
 
 /usr/include/c++/9/bits/predefined_ops.h:
 
@@ -430,6 +483,8 @@ CMakeFiles/test_log.dir/tests/test_log.cpp.o: /home/pzx/atpdxy/tests/test_log.cp
 
 /usr/include/c++/9/ext/type_traits.h:
 
+/usr/include/c++/9/ctime:
+
 /usr/include/c++/9/bits/ptr_traits.h:
 
 /usr/include/c++/9/bits/stl_iterator.h:
@@ -443,6 +498,8 @@ CMakeFiles/test_log.dir/tests/test_log.cpp.o: /home/pzx/atpdxy/tests/test_log.cp
 /usr/include/x86_64-linux-gnu/bits/types/wint_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/floatn-common.h:
+
+/usr/include/x86_64-linux-gnu/bits/syscall.h:
 
 /usr/include/c++/9/bits/list.tcc:
 
@@ -497,6 +554,8 @@ CMakeFiles/test_log.dir/tests/test_log.cpp.o: /home/pzx/atpdxy/tests/test_log.cp
 /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h:
 
 /usr/include/c++/9/bits/allocator.h:
+
+/usr/include/c++/9/bits/locale_conv.h:
 
 /usr/include/c++/9/bits/streambuf.tcc:
 
@@ -570,6 +629,8 @@ CMakeFiles/test_log.dir/tests/test_log.cpp.o: /home/pzx/atpdxy/tests/test_log.cp
 
 /usr/include/x86_64-linux-gnu/bits/locale.h:
 
+/usr/include/x86_64-linux-gnu/sys/syscall.h:
+
 /usr/include/x86_64-linux-gnu/bits/select.h:
 
 /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h:
@@ -581,6 +642,8 @@ CMakeFiles/test_log.dir/tests/test_log.cpp.o: /home/pzx/atpdxy/tests/test_log.cp
 /usr/include/c++/9/cwctype:
 
 /usr/include/c++/9/cctype:
+
+/usr/include/libintl.h:
 
 /usr/include/x86_64-linux-gnu/bits/endianness.h:
 
@@ -601,6 +664,8 @@ CMakeFiles/test_log.dir/tests/test_log.cpp.o: /home/pzx/atpdxy/tests/test_log.cp
 /usr/include/c++/9/bits/range_access.h:
 
 /usr/include/c++/9/ext/atomicity.h:
+
+/usr/include/unistd.h:
 
 /usr/include/c++/9/iostream:
 
@@ -654,9 +719,13 @@ CMakeFiles/test_log.dir/tests/test_log.cpp.o: /home/pzx/atpdxy/tests/test_log.cp
 
 /usr/include/x86_64-linux-gnu/bits/setjmp.h:
 
+/usr/include/x86_64-linux-gnu/bits/environments.h:
+
 /usr/include/c++/9/bits/alloc_traits.h:
 
 /usr/include/stdlib.h:
+
+/usr/include/x86_64-linux-gnu/c++/9/bits/messages_members.h:
 
 /usr/include/x86_64-linux-gnu/bits/waitflags.h:
 
