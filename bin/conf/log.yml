@@ -29,3 +29,33 @@ system:
     int_umap:
         p: 111
         z: 333
+class:
+    person:
+        name: atpdxy
+        age: 18
+        sex: true
+    map:
+        atpdxy01:
+            name: atpdxy01
+            age: 22
+            sex: false
+        atpdxy02:
+            name: atpdxy02
+            age: 33
+            sex: true
+    vec_map:
+        k1: 
+            - name: m1
+              age: 44
+              sex: true
+            - name: m2
+              age: 33
+              sex: false
+        k2: 
+            - name: m3
+              age: 42
+              sex: true
+            - name: m4
+              age: 94
+              sex: false
+    

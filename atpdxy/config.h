@@ -9,6 +9,7 @@
 #include <map>
 #include <set>
 #include <unordered_map>
+#include <functional>
 #include <unordered_set>
 #include "log.h"
 
@@ -33,6 +34,8 @@ public:
     virtual std::string toString() = 0;
     // 解析字符串来初始化配置接口
     virtual bool fromString(const std::string& val) = 0;
+    // 获得配置值的类型的函数接口
+    virtual std::string getTypeName() const = 0;
 protected:
     // 配置名称
     std::string m_name;
@@ -201,7 +204,7 @@ public:
     std::string operator()(const std::map<std::string, T>& v){
         YAML::Node node;
         for(auto& i : v){
-            node.push_back(YAML::Load(LexicalCast<T, std::string>()(i.second)));
+            node[i.first]=YAML::Load(LexicalCast<T, std::string>()(i.second));
         }
         std::stringstream ss;
         ss << node;
@@ -233,7 +236,7 @@ public:
     std::string operator()(const std::unordered_map<std::string, T>& v){
         YAML::Node node;
         for(auto& i : v){
-            node.push_back(YAML::Load(LexicalCast<T, std::string>()(i.second)));
+            node[i.first]=YAML::Load(LexicalCast<T, std::string>()(i.second));
         }
         std::stringstream ss;
         ss << node;
@@ -247,6 +250,8 @@ class ConfigVar : public ConfigVarBase{
 public:
     // 智能指针
     typedef std::shared_ptr<ConfigVar> ptr;
+    // 函数指针
+    typedef std::function<void(const T& old_value, const T& new_value)> on_change_cb;
     // 构造函数
     ConfigVar(const std::string& name, const T& default_value, const std::string& description = "")
         :ConfigVarBase(name, description),m_val(default_value){
@@ -270,17 +275,49 @@ public:
             setValue(FromStr()(val));
         }catch(std::exception& e){
             ATPDXY_LOG_ERROR(ATPDXY_LOG_ROOT()) << "ConfigVar::fromString exception"
-                << e.what() << " convert: string to " << typeid(m_val).name();
+                << e.what() << " convert: string to " << typeid(m_val).name()
+                << " - " << val;
         }
         return "";
     }
     // 返回配置的值
     const T getValue() const { return m_val;}
     // 设置配置的值
-    void setValue(const T& v) { m_val = v;}
+    void setValue(const T& v){ 
+        if(v == m_val){
+            return;
+        }
+        for(auto& i : m_cbs){
+            i.second(m_val, v);
+            m_val = v;
+        }
+    }
+    // 返回值的类型
+    std::string getTypeName() const override { return typeid(T).name();}
+    // 增加监听器
+    void addListener(uint64_t key, on_change_cb cb){
+        m_cbs[key] = cb;
+    }
+    // 删除监听器
+    void delListener(uint64_t key){
+        if(m_cbs.find(key) != m_cbs.end()){
+            m_cbs.erase(key);
+        }
+    }
+    // 获得监听器
+    on_change_cb getListener(uint64_t key){
+        auto it = m_cbs.find(key);
+        return it == m_cbs.end() ? nullptr : it->second;
+    }
+    // 清空监听器
+    void clearListener(){
+        m_cbs.clear();
+    }
 private:
     // 配置的值
     T m_val;
+    // 变更回调函数，uint64_t要求唯一，避免覆盖
+    std::map<uint64_t, on_change_cb> m_cbs;
 };
 
 class Config{
@@ -291,10 +328,18 @@ public:
     template <class T>
     static typename ConfigVar<T>::ptr Lookup(const std::string& name, const T& default_value,
         const std::string& description = ""){
-        auto tmp = Lookup<T>(name);
-        if(tmp){
-            ATPDXY_LOG_INFO(ATPDXY_LOG_ROOT()) << "Lookup name=" << name << " exists";
-            return tmp;
+        auto it = s_datas.find(name);
+        if(it != s_datas.end()){
+            auto tmp = std::dynamic_pointer_cast<ConfigVar<T>>(it->second);
+            if(tmp){
+                ATPDXY_LOG_INFO(ATPDXY_LOG_ROOT()) << "Lookup name=" << name << " exists";
+                return tmp;
+            }else{
+                ATPDXY_LOG_ERROR(ATPDXY_LOG_ROOT()) << "Lookup name=" << name << " exists but type not "
+                    << typeid(T).name() << " real_type=" << it->second->getTypeName()
+                    << " " <<it->second->toString();
+                return nullptr;
+            }
         }
         // 配置格式不正确
         if(name.find_first_not_of("abcdefghijklmnopqrstuvwxyz._012345678") != std::string::npos){
