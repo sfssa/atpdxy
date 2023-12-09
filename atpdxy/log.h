@@ -10,6 +10,7 @@
 #include <vector>
 #include <map>
 #include <stdarg.h>
+#include "util.h"
 #include "singleton.h"
 
 // 当走出日志包装器的作用域后调用析构函数完成打印日志
@@ -46,6 +47,13 @@
 #define ATPDXY_LOG_FMT_ERROR(logger, fmt, ...) ATPDXY_LOG_FMT_LEVEL(logger, atpdxy::LogLevel::ERROR, fmt, __VA_ARGS__)
 // 格式化写入fatal日志
 #define ATPDXY_LOG_FMT_FATAL(logger, fmt, ...) ATPDXY_LOG_FMT_LEVEL(logger, atpdxy::LogLevel::FATAL, fmt, __VA_ARGS__)
+
+#define ATPDXY_LOG_ROOT() atpdxy::LoggerMgr::GetInstance()->getRoot()
+
+/**
+ * @brief 获取name的日志器
+ */
+#define ATPDXY_LOG_NAME(name) atpdxy::LoggerMgr::GetInstance()->getLogger(name)
 
 namespace atpdxy{
 
@@ -268,6 +276,8 @@ public:
     Logger::ptr getLogger(const std::string& name);
     // 初始化函数，从配置初始化日志管理器
     void init();
+    // 获取主日志器
+    Logger::ptr getRoot() const { return m_root;}
 private:
     // 存储日志器的容器：日志器名称和智能指针
     std::map<std::string, Logger::ptr> m_loggers;
@@ -276,6 +286,7 @@ private:
 };
 
 typedef atpdxy::Singleton<LoggerManager> LoggerMgr;
+
 }
 
 

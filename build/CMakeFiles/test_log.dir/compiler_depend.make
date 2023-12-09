@@ -222,7 +222,6 @@ CMakeFiles/test_log.dir/tests/test_log.cpp.o: /home/pzx/atpdxy/tests/test_log.cp
   /usr/include/c++/9/bits/stl_map.h \
   /usr/include/c++/9/bits/stl_multimap.h \
   /usr/include/c++/9/bits/erase_if.h \
-  /home/pzx/atpdxy/atpdxy/singleton.h \
   /home/pzx/atpdxy/atpdxy/util.h \
   /usr/include/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
@@ -244,7 +243,8 @@ CMakeFiles/test_log.dir/tests/test_log.cpp.o: /home/pzx/atpdxy/tests/test_log.cp
   /usr/include/x86_64-linux-gnu/c++/9/bits/messages_members.h \
   /usr/include/libintl.h \
   /usr/include/c++/9/bits/locale_facets_nonio.tcc \
-  /usr/include/c++/9/bits/locale_conv.h
+  /usr/include/c++/9/bits/locale_conv.h \
+  /home/pzx/atpdxy/atpdxy/singleton.h
 
 
 /usr/include/c++/9/bits/locale_facets_nonio.tcc:

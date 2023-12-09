@@ -15,8 +15,6 @@ namespace atpdxy{
 // 获取线程id
 pid_t GetThreadId();
 // 获取协程id
-uint32_t GetFiberId(){
-    return 0;
-}
+uint32_t GetFiberId();
 
 }
