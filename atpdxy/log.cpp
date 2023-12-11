@@ -289,6 +289,11 @@ void Logger::clearAppenders(){
 void Logger::setFormatter(LogFormatter::ptr val){
 
     m_formatter = val;
+    for(auto& i : m_appenders){
+        if(!i->m_hasFormatter){
+            i->m_formatter = m_formatter;
+        }
+    }
 }
 
 void Logger::setFormatter(const std::string& val){
@@ -299,7 +304,8 @@ void Logger::setFormatter(const std::string& val){
             << std::endl;
         return;
     }
-    m_formatter = new_val;
+    // m_formatter = new_val;
+    setFormatter(new_val);
 }
 
 LogFormatter::ptr Logger::getFormatter(){
@@ -390,7 +396,8 @@ bool FileLogAppender::reopen(){
     if(m_filestream){
         m_filestream.close();
     }
-    m_filestream.open(m_filename);
+    // m_filestream.open(m_filename);
+    m_filestream.open(m_filename, std::ios::out | std::ios::app);
     // 将m_filestream转换成bool类型，非零值转换成1；0还是0
     return !!m_filestream;
 }

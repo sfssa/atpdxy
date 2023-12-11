@@ -8,3 +8,5 @@ CXX_INCLUDES = -I/home/pzx/atpdxy/.
 
 CXX_FLAGS =  -rdynamic -O3 -g -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -Wno-builtin-macro-redefined
 
+# Custom defines: CMakeFiles/test_config.dir/tests/test_config.cpp.o_DEFINES = __FILE__="tests/test_config.cpp"
+

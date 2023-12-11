@@ -214,6 +214,9 @@ void test_log(){
     std::cout << "============================================================" << std::endl;
     std::cout << root << std::endl;
     ATPDXY_LOG_INFO(system_log) << "hello system log" << std::endl;
+
+    system_log->setFormatter("%d - %m%n");
+    ATPDXY_LOG_INFO(system_log) << "hello system log" << std::endl;
 }
 
 int main(){
