@@ -1,2 +1,0 @@
-2023-12-09 21:18:51	test error
-2023-12-09 21:18:51	test fmt debug pzx

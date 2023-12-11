@@ -1,0 +1,2 @@
+2023-12-11 13:38:18	[INFO]	hello system log
+

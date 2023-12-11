@@ -3,7 +3,7 @@
 namespace atpdxy{
 
 // 类中静态成员要在类外初始化
-Config::ConfigVarMap Config::s_datas;
+// Config::ConfigVarMap Config::s_datas;
 
 // 将所有的node提取到list中
 static void ListAllMember(const std::string& prefix, const YAML::Node& node,
@@ -44,12 +44,12 @@ void Config::LoadFromYaml(const YAML::Node& root){
 }
 
 ConfigVarBase::ptr Config::LookupBase(const std::string& name){
-    auto it = s_datas.find(name);
-    return it == s_datas.end() ? nullptr : it->second;
+    auto it = GetDatas().find(name);
+    return it == GetDatas().end() ? nullptr : it->second;
 }
 
 void Config::ShowAllConfig(){
-    for(auto& i : s_datas){
+    for(auto& i : GetDatas()){
         ATPDXY_LOG_INFO(ATPDXY_LOG_ROOT()) << i.first << " ";
     }
 }

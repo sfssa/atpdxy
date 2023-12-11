@@ -2,6 +2,7 @@
 #include "../atpdxy/config.h"
 #include <yaml-cpp/yaml.h>
 
+#if 1
 atpdxy::ConfigVar<int>::ptr g_int_value_config = 
     atpdxy::Config::Lookup("system.port", (int)8080, "system port");
 
@@ -52,7 +53,7 @@ void print_yaml(const YAML::Node& node, int level){
     }
 }
 
-// 路径:/home/pzx/atpdxy/bin/conf/log.yml
+// 路径:/home/pzx/atpdxy/bin/conf/test.yml
 void test_yaml(){
     YAML::Node root = YAML::LoadFile("/home/pzx/atpdxy/bin/conf/log.yml");
     print_yaml(root, 0);
@@ -109,6 +110,7 @@ void test_config(){
     XX_M(g_int_umap_value_config, int_umap, after); 
 }
 
+#endif
 // 自定义类型需要提供转换成string函数并重载==运算符
 // 自定义类型需要实现偏特化LexicalCast版本，自定义版本可以和常规stl配套使用
 class Person {
@@ -201,11 +203,25 @@ void test_class(){
     ATPDXY_LOG_INFO(ATPDXY_LOG_ROOT()) << "after: " << g_person_vec_map->toString();
 }
 
+void test_log(){
+    static atpdxy::Logger::ptr  system_log = ATPDXY_LOG_NAME("system");
+    ATPDXY_LOG_INFO(system_log) << "hello system log" << std::endl;
+    std::cout << atpdxy::LoggerMgr::GetInstance()->toYamlString() << std::endl;
+    YAML::Node root = YAML::LoadFile("/home/pzx/atpdxy/bin/conf/log.yml");
+    atpdxy::Config::LoadFromYaml(root);
+    std::cout << "============================================================" << std::endl;
+    std::cout << atpdxy::LoggerMgr::GetInstance()->toYamlString() << std::endl;
+    std::cout << "============================================================" << std::endl;
+    std::cout << root << std::endl;
+    ATPDXY_LOG_INFO(system_log) << "hello system log" << std::endl;
+}
+
 int main(){
     // std::cout << "Hello World!" << std::endl;
     // test_yaml();
     // test_config();
     // atpdxy::Config::ShowAllConfig();
-    test_class();
+    // test_class();
+    test_log();
     return 0;
 }
