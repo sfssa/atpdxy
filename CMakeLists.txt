@@ -12,7 +12,8 @@ link_directories(/usr/local/lib)
 set(LIB_SRC
     atpdxy/log.cpp
     atpdxy/util.cpp
-    atpdxy/config.cpp)
+    atpdxy/config.cpp
+    atpdxy/thread.cpp)
 
 add_library(atpdxy SHARED ${LIB_SRC}) 
 # 重定义__FILE__为相对路径
@@ -36,6 +37,11 @@ add_executable(test_config tests/test_config.cpp)
 add_dependencies(test_config atpdxy)
 force_redefine_file_macro_for_sources(test_config)
 target_link_libraries(test_config ${LIBS})
+
+add_executable(test_thread tests/test_thread.cpp)
+add_dependencies(test_thread atpdxy)
+force_redefine_file_macro_for_sources(test_thread)
+target_link_libraries(test_thread ${LIBS})
 
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
