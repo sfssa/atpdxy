@@ -38,15 +38,15 @@ void test03(){
 
 int main(){
     ATPDXY_LOG_INFO(g_logger) << "thread test begin";
-    // YAML::Node root = YAML::LoadFile("/home/pzx/atpdxy/bin/conf/log2.yml");
-    // atpdxy::Config::LoadFromYaml(root);
+    YAML::Node root = YAML::LoadFile("/home/pzx/atpdxy/bin/conf/log2.yml");
+    atpdxy::Config::LoadFromYaml(root);
     std::vector<atpdxy::Thread::ptr> thrs;
-    for(size_t i = 0; i < 5; ++i){
-        atpdxy::Thread::ptr thr(new atpdxy::Thread(&test01, "name_" + std::to_string(i)));
-        thrs.push_back(thr);
-        // atpdxy::Thread::ptr thr1(new atpdxy::Thread(&test02, "name_" + std::to_string(i * 2)));
+    for(size_t i = 0; i < 1; ++i){
+        // atpdxy::Thread::ptr thr(new atpdxy::Thread(&test01, "name_" + std::to_string(i)));
+        // thrs.push_back(thr);
+        atpdxy::Thread::ptr thr1(new atpdxy::Thread(&test02, "name_" + std::to_string(i * 2)));
         // atpdxy::Thread::ptr thr2(new atpdxy::Thread(&test03, "name_" + std::to_string(i * 2 + 1)));
-        // thrs.push_back(thr1);
+        thrs.push_back(thr1);
         // thrs.push_back(thr2);
     }
     

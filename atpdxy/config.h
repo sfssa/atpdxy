@@ -12,6 +12,7 @@
 #include <functional>
 #include <unordered_set>
 #include "log.h"
+#include "mutex.h"
 
 namespace atpdxy{
 
@@ -248,6 +249,7 @@ public:
 template <class T, class FromStr = LexicalCast<std::string, T>, class ToStr = LexicalCast<T,std::string>>
 class ConfigVar : public ConfigVarBase{
 public:
+    typedef RWMutex RWMutexType;
     // 智能指针
     typedef std::shared_ptr<ConfigVar> ptr;
     // 函数指针
@@ -261,6 +263,7 @@ public:
     std::string toString() override{
         try{
             // return boost::lexical_cast<std::string>(m_val);
+            RWMutexType::ReadLock lock(m_mutex);
             return ToStr()(m_val);
         }catch(std::exception& e){
             ATPDXY_LOG_ERROR(ATPDXY_LOG_ROOT()) << "ConfigVar::toString exception"
@@ -280,37 +283,49 @@ public:
         }
         return "";
     }
-    // 返回配置的值
-    const T getValue() const { return m_val;}
+    // 返回配置的值(用到锁后不能使用const)
+    const T getValue() { 
+        RWMutexType::ReadLock lock(m_mutex);
+        return m_val;
+    }
     // 设置配置的值
     void setValue(const T& v){ 
-        if(v == m_val){
-            return;
-        }
-        for(auto& i : m_cbs){
-            i.second(m_val, v);
-            m_val = v;
-        }
+        {
+            RWMutexType::ReadLock lock(m_mutex);
+            if(v == m_val){
+                return;
+            }
+            for(auto& i : m_cbs){
+                i.second(m_val, v);
+            }
+        }  
+        RWMutexType::WriteLock lock(m_mutex);
+        m_val = v;
     }
     // 返回值的类型
     std::string getTypeName() const override { return typeid(T).name();}
     // 增加监听器
-    void addListener(uint64_t key, on_change_cb cb){
-        m_cbs[key] = cb;
+    uint64_t addListener(on_change_cb cb){
+        static uint64_t s_func_id = 0;
+        RWMutexType::WriteLock lock(m_mutex);
+        ++s_func_id;
+        m_cbs[s_func_id] = cb;
+        return s_func_id;
     }
     // 删除监听器
     void delListener(uint64_t key){
-        if(m_cbs.find(key) != m_cbs.end()){
-            m_cbs.erase(key);
-        }
+        RWMutexType::WriteLock lock(m_mutex);
+        m_cbs.erase(key);
     }
     // 获得监听器
     on_change_cb getListener(uint64_t key){
+        RWMutexType::ReadLock lock(m_mutex);
         auto it = m_cbs.find(key);
         return it == m_cbs.end() ? nullptr : it->second;
     }
     // 清空监听器
     void clearListener(){
+        RWMutexType::WriteLock lock(m_mutex);
         m_cbs.clear();
     }
 private:
@@ -318,16 +333,19 @@ private:
     T m_val;
     // 变更回调函数，uint64_t要求唯一，避免覆盖
     std::map<uint64_t, on_change_cb> m_cbs;
+    RWMutexType m_mutex;
 };
 
 class Config{
 public:
+    typedef RWMutex RWMutexType;
     // 配置映射表
     typedef std::map<std::string,ConfigVarBase::ptr> ConfigVarMap;
     // 查找配置，有则返回；无则创建
     template <class T>
     static typename ConfigVar<T>::ptr Lookup(const std::string& name, const T& default_value,
         const std::string& description = ""){
+        RWMutexType::WriteLock lock(GetMutex());
         auto it = GetDatas().find(name);
         if(it != GetDatas().end()){
             auto tmp = std::dynamic_pointer_cast<ConfigVar<T>>(it->second);
@@ -354,6 +372,7 @@ public:
     // 查找配置(确定有这个配置)
     template <class T>
     static typename ConfigVar<T>::ptr Lookup(const std::string& name){
+        RWMutexType::ReadLock lock(GetMutex());
         auto it = GetDatas().find(name);
         if(it == GetDatas().end()){
             return nullptr;
@@ -366,13 +385,20 @@ public:
     // 查找有没有当前命名的项
     static ConfigVarBase::ptr LookupBase(const std::string& name);
     // 显示所有配置
-    static void ShowAllConfig();
+    static void Visit(std::function<void(ConfigVarBase::ptr)> cb);
 private:    
     // 静态映射表
     // static ConfigVarMap s_datas;
     static ConfigVarMap& GetDatas(){
         static ConfigVarMap s_datas;
         return s_datas;
+    }
+
+    // 上面的映射表也是static，如果是成员变量，那么无法确定哪个先初始化完成
+    // 有可能出现，锁还没有初始化就进行访问的情况，因此通过声明静态成员函数的形式来解决
+    static RWMutexType& GetMutex(){
+        static RWMutexType s_mutex;
+        return s_mutex;
     }
 };
 }

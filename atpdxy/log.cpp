@@ -235,12 +235,12 @@ std::stringstream& LogEventWrap::getSS(){
 }
 
 LogFormatter::ptr LogAppender::getFormatter(){
-    Mutex::Lock lock(m_mutex);
+    MutexType::Lock lock(m_mutex);
     return m_formatter;
 }
 
 void LogAppender::setFormatter(LogFormatter::ptr val){
-    Mutex::Lock lock(m_mutex);
+    MutexType::Lock lock(m_mutex);
     m_formatter = val;
     if(m_formatter){
         m_hasFormatter = true;
@@ -710,7 +710,7 @@ atpdxy::ConfigVar<std::set<LogDefine>>::ptr g_log_defines =
 // 冷知识：在main函数前构造和在main函数后构造
 struct LogIniter{
     LogIniter(){
-        g_log_defines->addListener(0xF1E231, [](const std::set<LogDefine>& old_value,
+        g_log_defines->addListener([](const std::set<LogDefine>& old_value,
             const std::set<LogDefine>& new_value){
             ATPDXY_LOG_INFO(ATPDXY_LOG_ROOT()) << "on_logger_conf_changed";
             // 新增

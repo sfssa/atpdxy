@@ -186,7 +186,7 @@ friend class Logger;
 public:
     // 日志输出器智能指针
     typedef std::shared_ptr<LogAppender> ptr;
-    typedef Mutex MutexType;
+    typedef Spinlock MutexType;
     // 虚析构函数
     virtual ~LogAppender() {}
     // 打印日志函数接口
@@ -218,7 +218,7 @@ friend class LoggerManager;
 public:
     // 智能指针
     typedef std::shared_ptr<Logger> ptr;
-    typedef Mutex MutexType;
+    typedef Spinlock MutexType;
     // 构造函数
     Logger(const std::string& name = "root");
     // 写日志
@@ -303,7 +303,7 @@ private:
 
 class LoggerManager{
 public:
-    typedef Mutex MutexType;
+    typedef Spinlock MutexType;
     LoggerManager();
     // 获得日志器
     Logger::ptr getLogger(const std::string& name);

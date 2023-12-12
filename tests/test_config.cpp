@@ -188,7 +188,7 @@ void test_class(){
     }
 
     // 测试变更配置
-    g_person->addListener(10, [](const Person& old_value, const Person& new_value){
+    g_person->addListener([](const Person& old_value, const Person& new_value){
         ATPDXY_LOG_INFO(ATPDXY_LOG_ROOT()) << "old_value:" << old_value.toString()
             << " new_value: " << new_value.toString();
     });
@@ -226,5 +226,12 @@ int main(){
     // atpdxy::Config::ShowAllConfig();
     // test_class();
     test_log();
+    atpdxy::Config::Visit([](atpdxy::ConfigVarBase::ptr var){
+        ATPDXY_LOG_INFO(ATPDXY_LOG_ROOT()) << "name=" << var->getName()
+            << " description=" << var->getDescription()
+            << " type.name=" << var->getTypeName()
+            << " value=" << var->toString()
+            << std::endl;
+    });
     return 0;
 }
