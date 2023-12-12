@@ -297,6 +297,8 @@ private:
     std::string m_filename;
     // 文件流
     std::ofstream m_filestream;
+    // 
+    uint64_t m_lastTime = 0;
 };
 
 class LoggerManager{

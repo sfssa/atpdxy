@@ -33,15 +33,15 @@ private:
 
 // RAII机制
 template <class T>
-struct ScopeLockImpl{
+struct ScopedLockImpl{
 public:
-    ScopeLockImpl(T& mutex)
+    ScopedLockImpl(T& mutex)
         :m_mutex(mutex){
         m_mutex.lock();
         m_locked = true;
     }
 
-    ~ScopeLockImpl(){
+    ~ScopedLockImpl(){
         unlock();
     }
 
@@ -130,7 +130,7 @@ private:
 
 class Mutex{
 public:
-    typedef ScopeLockImpl<Mutex> Lock;
+    typedef ScopedLockImpl<Mutex> Lock;
     Mutex(){
         pthread_mutex_init(&m_mutex, nullptr);
     }
@@ -194,5 +194,52 @@ public:
     void rdlock() {}
     void wrlock() {}
     void unlock() {} 
+};
+
+// 自旋锁
+class Spinlock{
+public:
+    typedef ScopedLockImpl<Spinlock> Lock;
+    Spinlock(){
+        pthread_spin_init(&m_mutex, 0);
+    }
+
+    ~Spinlock(){
+        pthread_spin_destroy(&m_mutex);
+    }
+
+    void lock(){
+        pthread_spin_lock(&m_mutex);
+    }
+
+    void unlock(){
+        pthread_spin_unlock(&m_mutex);
+    }
+private:
+    pthread_spinlock_t m_mutex;
+};
+
+// 原子锁
+class CASLock{
+public:
+    typedef ScopedLockImpl<CASLock> Lock;
+    CASLock(){
+        m_mutex.clear();
+    }
+    
+    ~CASLock(){
+
+    }
+
+    void lock(){
+        while(std::atomic_flag_test_and_set_explicit(&m_mutex, std::memory_order_acquire));
+    }
+
+    void unlock(){
+        std::atomic_flag_clear_explicit(&m_mutex, std::memory_order_release);
+    }
+private:    
+    // 原子状态
+    volatile std::atomic_flag m_mutex;
 };
 }

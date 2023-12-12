@@ -388,9 +388,18 @@ void StdoutLogAppender::log(std::shared_ptr<Logger> logger, LogLevel::Level leve
 
 void FileLogAppender::log(std::shared_ptr<Logger> logger, LogLevel::Level level, LogEvent::ptr event){
     if(level >= m_level){
+        uint64_t now = time(0);
+        if(now != m_lastTime){
+            reopen();
+            m_lastTime = now;
+        }
         MutexType::Lock lock(m_mutex);
-        m_filestream << m_formatter->format(logger, level, event);
+        if(!(m_filestream << m_formatter->format(logger, level, event))){
+            std::cout << "error" << std::endl;
+        }
     }
+    // 可能在输出日志时日志文件被删除的情况
+
 }
 
 std::string FileLogAppender::toYamlString(){
