@@ -13,7 +13,8 @@ set(LIB_SRC
     atpdxy/log.cpp
     atpdxy/util.cpp
     atpdxy/config.cpp
-    atpdxy/thread.cpp)
+    atpdxy/thread.cpp
+    atpdxy/mutex.cpp)
 
 add_library(atpdxy SHARED ${LIB_SRC}) 
 # 重定义__FILE__为相对路径

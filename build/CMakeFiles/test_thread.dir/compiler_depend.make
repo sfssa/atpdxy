@@ -747,8 +747,18 @@ CMakeFiles/test_thread.dir/tests/test_thread.cpp.o: /home/pzx/atpdxy/tests/test_
   /usr/include/c++/9/thread \
   /usr/include/c++/9/chrono \
   /usr/include/c++/9/ratio \
-  /usr/include/c++/9/bits/parse_numbers.h
+  /usr/include/c++/9/bits/parse_numbers.h \
+  /home/pzx/atpdxy/atpdxy/mutex.h \
+  /usr/include/semaphore.h \
+  /usr/include/x86_64-linux-gnu/bits/semaphore.h \
+  /home/pzx/atpdxy/atpdxy/noncopyable.h
 
+
+/home/pzx/atpdxy/atpdxy/noncopyable.h:
+
+/usr/include/semaphore.h:
+
+/home/pzx/atpdxy/atpdxy/mutex.h:
 
 /usr/include/c++/9/bits/parse_numbers.h:
 
@@ -1665,6 +1675,8 @@ CMakeFiles/test_thread.dir/tests/test_thread.cpp.o: /home/pzx/atpdxy/tests/test_
 /usr/include/c++/9/bits/locale_classes.h:
 
 /usr/include/boost/mpl/lambda.hpp:
+
+/usr/include/x86_64-linux-gnu/bits/semaphore.h:
 
 /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h:
 

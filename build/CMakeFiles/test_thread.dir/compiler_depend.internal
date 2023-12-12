@@ -749,4 +749,8 @@ CMakeFiles/test_thread.dir/tests/test_thread.cpp.o
  /usr/include/c++/9/chrono
  /usr/include/c++/9/ratio
  /usr/include/c++/9/bits/parse_numbers.h
+ /home/pzx/atpdxy/atpdxy/mutex.h
+ /usr/include/semaphore.h
+ /usr/include/x86_64-linux-gnu/bits/semaphore.h
+ /home/pzx/atpdxy/atpdxy/noncopyable.h
 

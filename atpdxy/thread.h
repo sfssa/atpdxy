@@ -3,6 +3,7 @@
 #include <functional>
 #include <memory>
 #include <pthread.h>
+#include "mutex.h"
 
 namespace atpdxy{
 
@@ -41,6 +42,8 @@ private:
     std::function<void()> m_cb;
     // 线程的名称
     std::string m_name;
+    // 信号量
+    Semaphore m_semaphore;
 };
 
 }

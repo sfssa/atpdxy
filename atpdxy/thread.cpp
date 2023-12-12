@@ -40,6 +40,8 @@ Thread::Thread(std::function<void()> cb, const std::string& name)
             << " name= " << name;
         throw std::logic_error("pthread_create error");
     }
+    // 默认信号量是0，在这里线程被阻塞知道绑定了run函数后被唤醒继续执行
+    m_semaphore.wait();
 }
 
 // 析构函数
@@ -59,6 +61,7 @@ void* Thread::run(void* arg){
     std::function<void()> cb;
     // 避免一次拷贝，直接移交所有权
     cb.swap(thread->m_cb);
+    thread->m_semaphore.notify();
     cb();
     return 0;
 }

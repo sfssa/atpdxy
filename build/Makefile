@@ -219,6 +219,30 @@ atpdxy/log.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/atpdxy.dir/build.make CMakeFiles/atpdxy.dir/atpdxy/log.cpp.s
 .PHONY : atpdxy/log.cpp.s
 
+atpdxy/mutex.o: atpdxy/mutex.cpp.o
+.PHONY : atpdxy/mutex.o
+
+# target to build an object file
+atpdxy/mutex.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/atpdxy.dir/build.make CMakeFiles/atpdxy.dir/atpdxy/mutex.cpp.o
+.PHONY : atpdxy/mutex.cpp.o
+
+atpdxy/mutex.i: atpdxy/mutex.cpp.i
+.PHONY : atpdxy/mutex.i
+
+# target to preprocess a source file
+atpdxy/mutex.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/atpdxy.dir/build.make CMakeFiles/atpdxy.dir/atpdxy/mutex.cpp.i
+.PHONY : atpdxy/mutex.cpp.i
+
+atpdxy/mutex.s: atpdxy/mutex.cpp.s
+.PHONY : atpdxy/mutex.s
+
+# target to generate assembly for a file
+atpdxy/mutex.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/atpdxy.dir/build.make CMakeFiles/atpdxy.dir/atpdxy/mutex.cpp.s
+.PHONY : atpdxy/mutex.cpp.s
+
 atpdxy/thread.o: atpdxy/thread.cpp.o
 .PHONY : atpdxy/thread.o
 
@@ -357,6 +381,9 @@ help:
 	@echo "... atpdxy/log.o"
 	@echo "... atpdxy/log.i"
 	@echo "... atpdxy/log.s"
+	@echo "... atpdxy/mutex.o"
+	@echo "... atpdxy/mutex.i"
+	@echo "... atpdxy/mutex.s"
 	@echo "... atpdxy/thread.o"
 	@echo "... atpdxy/thread.i"
 	@echo "... atpdxy/thread.s"

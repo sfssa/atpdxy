@@ -57,6 +57,8 @@
         "valarray": "cpp",
         "thread": "cpp",
         "chrono": "cpp",
-        "ratio": "cpp"
+        "ratio": "cpp",
+        "condition_variable": "cpp",
+        "mutex": "cpp"
     }
 }
