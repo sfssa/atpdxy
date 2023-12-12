@@ -12,6 +12,7 @@
 #include <stdarg.h>
 #include "util.h"
 #include "singleton.h"
+#include "mutex.h"
 
 // 当走出日志包装器的作用域后调用析构函数完成打印日志
 #define ATPDXY_LOG_LEVEL(logger, level) \
@@ -185,6 +186,7 @@ friend class Logger;
 public:
     // 日志输出器智能指针
     typedef std::shared_ptr<LogAppender> ptr;
+    typedef Mutex MutexType;
     // 虚析构函数
     virtual ~LogAppender() {}
     // 打印日志函数接口
@@ -192,7 +194,7 @@ public:
     // 设置输出器格式
     void setFormatter(LogFormatter::ptr val);
     // 获得输出器格式
-    LogFormatter::ptr getFormatter() const { return m_formatter;}
+    LogFormatter::ptr getFormatter();
     // 获得日志级别
     LogLevel::Level getLevel() const { return m_level;}
     // 设置日志级别
@@ -206,6 +208,8 @@ protected:
     LogFormatter::ptr m_formatter;
     // 是否有自己的formatter
     bool m_hasFormatter = false;
+    // 互斥量，主要是输出控制台或者写到文件中，
+    MutexType m_mutex;
 };
 
 // 日志器
@@ -214,6 +218,7 @@ friend class LoggerManager;
 public:
     // 智能指针
     typedef std::shared_ptr<Logger> ptr;
+    typedef Mutex MutexType;
     // 构造函数
     Logger(const std::string& name = "root");
     // 写日志
@@ -258,6 +263,7 @@ private:
     LogFormatter::ptr m_formatter;
     // 主日志器，用来初始化一些日志器
     Logger::ptr m_root;
+    MutexType m_mutex;
 };
 
 // 输出到控制台的appender
@@ -295,6 +301,7 @@ private:
 
 class LoggerManager{
 public:
+    typedef Mutex MutexType;
     LoggerManager();
     // 获得日志器
     Logger::ptr getLogger(const std::string& name);
@@ -308,6 +315,7 @@ private:
     std::map<std::string, Logger::ptr> m_loggers;
     // 默认主日志器
     Logger::ptr m_root;
+    MutexType m_mutex;
 };
 
 typedef atpdxy::Singleton<LoggerManager> LoggerMgr;

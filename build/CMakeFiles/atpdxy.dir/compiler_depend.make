@@ -741,7 +741,15 @@ CMakeFiles/atpdxy.dir/atpdxy/config.cpp.o: /home/pzx/atpdxy/atpdxy/config.cpp \
   /usr/include/x86_64-linux-gnu/asm/unistd_64.h \
   /usr/include/x86_64-linux-gnu/bits/syscall.h \
   /usr/include/c++/9/iomanip \
-  /home/pzx/atpdxy/atpdxy/singleton.h
+  /home/pzx/atpdxy/atpdxy/singleton.h \
+  /home/pzx/atpdxy/atpdxy/mutex.h \
+  /usr/include/c++/9/thread \
+  /usr/include/c++/9/chrono \
+  /usr/include/c++/9/ratio \
+  /usr/include/c++/9/bits/parse_numbers.h \
+  /usr/include/semaphore.h \
+  /usr/include/x86_64-linux-gnu/bits/semaphore.h \
+  /home/pzx/atpdxy/atpdxy/noncopyable.h
 
 CMakeFiles/atpdxy.dir/atpdxy/log.cpp.o: /home/pzx/atpdxy/atpdxy/log.cpp \
   /usr/include/stdc-predef.h \
@@ -987,6 +995,16 @@ CMakeFiles/atpdxy.dir/atpdxy/log.cpp.o: /home/pzx/atpdxy/atpdxy/log.cpp \
   /usr/include/c++/9/bits/locale_facets_nonio.tcc \
   /usr/include/c++/9/bits/locale_conv.h \
   /home/pzx/atpdxy/atpdxy/singleton.h \
+  /home/pzx/atpdxy/atpdxy/mutex.h \
+  /usr/include/c++/9/thread \
+  /usr/include/c++/9/chrono \
+  /usr/include/c++/9/ratio \
+  /usr/include/c++/9/limits \
+  /usr/include/c++/9/bits/parse_numbers.h \
+  /usr/include/semaphore.h \
+  /usr/include/x86_64-linux-gnu/bits/semaphore.h \
+  /usr/include/c++/9/atomic \
+  /home/pzx/atpdxy/atpdxy/noncopyable.h \
   /usr/include/string.h \
   /usr/include/strings.h \
   /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
@@ -1282,7 +1300,6 @@ CMakeFiles/atpdxy.dir/atpdxy/log.cpp.o: /home/pzx/atpdxy/atpdxy/log.cpp \
   /usr/include/boost/concept/detail/concept_undef.hpp \
   /usr/include/boost/iterator/iterator_concepts.hpp \
   /usr/include/boost/limits.hpp \
-  /usr/include/c++/9/limits \
   /usr/include/c++/9/algorithm \
   /usr/include/c++/9/bits/stl_algo.h \
   /usr/include/c++/9/bits/algorithmfwd.h \
@@ -1463,7 +1480,6 @@ CMakeFiles/atpdxy.dir/atpdxy/log.cpp.o: /home/pzx/atpdxy/atpdxy/log.cpp \
   /usr/local/include/yaml-cpp/node/detail/node_iterator.h \
   /usr/local/include/yaml-cpp/node/iterator.h \
   /usr/local/include/yaml-cpp/node/detail/iterator.h \
-  /usr/include/c++/9/atomic \
   /usr/local/include/yaml-cpp/node/convert.h \
   /usr/include/c++/9/unordered_map \
   /usr/include/c++/9/bits/hashtable.h \
@@ -2180,6 +2196,8 @@ CMakeFiles/atpdxy.dir/atpdxy/util.cpp.o: /home/pzx/atpdxy/atpdxy/util.cpp \
 
 /home/pzx/atpdxy/atpdxy/thread.cpp:
 
+/home/pzx/atpdxy/atpdxy/mutex.cpp:
+
 /home/pzx/atpdxy/atpdxy/noncopyable.h:
 
 /usr/include/semaphore.h:
@@ -2193,8 +2211,6 @@ CMakeFiles/atpdxy.dir/atpdxy/util.cpp.o: /home/pzx/atpdxy/atpdxy/util.cpp \
 /usr/include/c++/9/thread:
 
 /home/pzx/atpdxy/atpdxy/mutex.h:
-
-/home/pzx/atpdxy/atpdxy/mutex.cpp:
 
 /usr/include/x86_64-linux-gnu/bits/syscall.h:
 
