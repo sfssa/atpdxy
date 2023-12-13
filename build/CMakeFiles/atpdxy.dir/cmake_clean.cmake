@@ -3,6 +3,8 @@ file(REMOVE_RECURSE
   "/home/pzx/atpdxy/lib/libatpdxy.so"
   "CMakeFiles/atpdxy.dir/atpdxy/config.cpp.o"
   "CMakeFiles/atpdxy.dir/atpdxy/config.cpp.o.d"
+  "CMakeFiles/atpdxy.dir/atpdxy/fiber.cpp.o"
+  "CMakeFiles/atpdxy.dir/atpdxy/fiber.cpp.o.d"
   "CMakeFiles/atpdxy.dir/atpdxy/log.cpp.o"
   "CMakeFiles/atpdxy.dir/atpdxy/log.cpp.o.d"
   "CMakeFiles/atpdxy.dir/atpdxy/mutex.cpp.o"

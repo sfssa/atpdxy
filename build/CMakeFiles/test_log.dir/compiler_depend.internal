@@ -256,4 +256,5 @@ CMakeFiles/test_log.dir/tests/test_log.cpp.o
  /usr/include/x86_64-linux-gnu/bits/semaphore.h
  /usr/include/c++/9/atomic
  /home/pzx/atpdxy/atpdxy/noncopyable.h
+ /home/pzx/atpdxy/atpdxy/thread.h
 

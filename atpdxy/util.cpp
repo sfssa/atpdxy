@@ -10,6 +10,7 @@
 #include <stdarg.h>
 #include <map>
 #include "log.h"
+#include "fiber.h"
 
 namespace atpdxy{
 atpdxy::Logger::ptr g_logger = ATPDXY_LOG_NAME("system");
@@ -19,7 +20,7 @@ pid_t GetThreadId(){
 }
 
 uint32_t GetFiberId(){
-    return 0;
+    return atpdxy::Fiber::GetFiberId();
 }
 
 void BackTrace(std::vector<std::string>& bt, int size, int skip){

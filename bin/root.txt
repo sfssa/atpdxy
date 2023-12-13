@@ -48,3 +48,55 @@ p: 2
 
 2023-12-12 23:09:39	name=system.value description=system value type.name=f value=120.099998
 
+2023-12-13 15:19:10	name=class.map description=class_person type.name=St3mapINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE6PersonSt4lessIS5_ESaISt4pairIKS5_S6_EEE value=
+
+2023-12-13 15:19:10	name=class.person description=person type.name=6Person value=name: ""
+age: 0
+sex: false
+
+2023-12-13 15:19:10	name=class.vec_map description=class_person type.name=St3mapINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESt6vectorI6PersonSaIS7_EESt4lessIS5_ESaISt4pairIKS5_S9_EEE value=
+
+2023-12-13 15:19:10	name=fiber.stack_size description=fiber stack size type.name=j value=1048576
+
+2023-12-13 15:19:10	name=logs description=logs config type.name=St3setIN6atpdxy9LogDefineESt4lessIS1_ESaIS1_EE value=- name: root
+  level: INFO
+  formatter: "%d%T%m%n"
+  appenders:
+    - type: FileLogAppender
+      file: root.txt
+    - type: StdoutLogAppender
+- name: system
+  level: INFO
+  formatter: "%d%T%m%n"
+  appenders:
+    - type: FileLogAppender
+      file: system.txt
+      formatter: "%d%T[%p]%T%m%n"
+    - type: StdoutLogAppender
+
+2023-12-13 15:19:10	name=system.int_list description=system int list type.name=NSt7__cxx114listIiSaIiEEE value=- 1
+- 2
+- 3
+
+2023-12-13 15:19:10	name=system.int_map description=system int map type.name=St3mapINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEiSt4lessIS5_ESaISt4pairIKS5_iEEE value=k: 2
+l: 3
+
+2023-12-13 15:19:10	name=system.int_set description=system int set type.name=St3setIiSt4lessIiESaIiEE value=- 4
+- 5
+- 6
+
+2023-12-13 15:19:10	name=system.int_umap description=system int umap type.name=St13unordered_mapINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEiSt4hashIS5_ESt8equal_toIS5_ESaISt4pairIKS5_iEEE value=z: 3
+p: 2
+
+2023-12-13 15:19:10	name=system.int_uset description=system int uset type.name=St13unordered_setIiSt4hashIiESt8equal_toIiESaIiEE value=- 9
+- 8
+- 7
+
+2023-12-13 15:19:10	name=system.int_vec description=system int vec type.name=St6vectorIiSaIiEE value=- 1
+- 2
+- 3
+
+2023-12-13 15:19:10	name=system.port description=system port type.name=i value=8080
+
+2023-12-13 15:19:10	name=system.value description=system value type.name=f value=120.099998
+

@@ -255,6 +255,7 @@ CMakeFiles/test_config.dir/tests/test_config.cpp.o: /home/pzx/atpdxy/tests/test_
   /usr/include/x86_64-linux-gnu/bits/semaphore.h \
   /usr/include/c++/9/atomic \
   /home/pzx/atpdxy/atpdxy/noncopyable.h \
+  /home/pzx/atpdxy/atpdxy/thread.h \
   /home/pzx/atpdxy/atpdxy/config.h \
   /usr/include/boost/lexical_cast.hpp \
   /usr/include/boost/config.hpp \
@@ -1000,6 +1001,10 @@ CMakeFiles/test_config.dir/tests/test_config.cpp.o: /home/pzx/atpdxy/tests/test_
 
 /usr/include/boost/preprocessor/seq/limits/size_256.hpp:
 
+/usr/lib/gcc/x86_64-linux-gnu/9/include/syslimits.h:
+
+/usr/include/boost/preprocessor/seq/limits/elem_256.hpp:
+
 /usr/include/boost/lexical_cast.hpp:
 
 /home/pzx/atpdxy/atpdxy/noncopyable.h:
@@ -1616,6 +1621,8 @@ CMakeFiles/test_config.dir/tests/test_config.cpp.o: /home/pzx/atpdxy/tests/test_
 
 /usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
 
+/home/pzx/atpdxy/atpdxy/thread.h:
+
 /usr/include/boost/mpl/arg_fwd.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/uintn-identity.h:
@@ -2113,10 +2120,6 @@ CMakeFiles/test_config.dir/tests/test_config.cpp.o: /home/pzx/atpdxy/tests/test_
 /usr/include/boost/mpl/aux_/config/lambda.hpp:
 
 /usr/include/boost/type_traits/is_same.hpp:
-
-/usr/lib/gcc/x86_64-linux-gnu/9/include/syslimits.h:
-
-/usr/include/boost/preprocessor/seq/limits/elem_256.hpp:
 
 /usr/include/boost/detail/indirect_traits.hpp:
 

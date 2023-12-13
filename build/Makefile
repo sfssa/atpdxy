@@ -184,6 +184,19 @@ test_util/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_util.dir/build.make CMakeFiles/test_util.dir/build
 .PHONY : test_util/fast
 
+#=============================================================================
+# Target rules for targets named test_fiber
+
+# Build rule for target.
+test_fiber: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_fiber
+.PHONY : test_fiber
+
+# fast build rule for target.
+test_fiber/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_fiber.dir/build.make CMakeFiles/test_fiber.dir/build
+.PHONY : test_fiber/fast
+
 atpdxy/config.o: atpdxy/config.cpp.o
 .PHONY : atpdxy/config.o
 
@@ -207,6 +220,30 @@ atpdxy/config.s: atpdxy/config.cpp.s
 atpdxy/config.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/atpdxy.dir/build.make CMakeFiles/atpdxy.dir/atpdxy/config.cpp.s
 .PHONY : atpdxy/config.cpp.s
+
+atpdxy/fiber.o: atpdxy/fiber.cpp.o
+.PHONY : atpdxy/fiber.o
+
+# target to build an object file
+atpdxy/fiber.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/atpdxy.dir/build.make CMakeFiles/atpdxy.dir/atpdxy/fiber.cpp.o
+.PHONY : atpdxy/fiber.cpp.o
+
+atpdxy/fiber.i: atpdxy/fiber.cpp.i
+.PHONY : atpdxy/fiber.i
+
+# target to preprocess a source file
+atpdxy/fiber.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/atpdxy.dir/build.make CMakeFiles/atpdxy.dir/atpdxy/fiber.cpp.i
+.PHONY : atpdxy/fiber.cpp.i
+
+atpdxy/fiber.s: atpdxy/fiber.cpp.s
+.PHONY : atpdxy/fiber.s
+
+# target to generate assembly for a file
+atpdxy/fiber.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/atpdxy.dir/build.make CMakeFiles/atpdxy.dir/atpdxy/fiber.cpp.s
+.PHONY : atpdxy/fiber.cpp.s
 
 atpdxy/log.o: atpdxy/log.cpp.o
 .PHONY : atpdxy/log.o
@@ -328,6 +365,30 @@ tests/test_config.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_config.dir/build.make CMakeFiles/test_config.dir/tests/test_config.cpp.s
 .PHONY : tests/test_config.cpp.s
 
+tests/test_fiber.o: tests/test_fiber.cpp.o
+.PHONY : tests/test_fiber.o
+
+# target to build an object file
+tests/test_fiber.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_fiber.dir/build.make CMakeFiles/test_fiber.dir/tests/test_fiber.cpp.o
+.PHONY : tests/test_fiber.cpp.o
+
+tests/test_fiber.i: tests/test_fiber.cpp.i
+.PHONY : tests/test_fiber.i
+
+# target to preprocess a source file
+tests/test_fiber.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_fiber.dir/build.make CMakeFiles/test_fiber.dir/tests/test_fiber.cpp.i
+.PHONY : tests/test_fiber.cpp.i
+
+tests/test_fiber.s: tests/test_fiber.cpp.s
+.PHONY : tests/test_fiber.s
+
+# target to generate assembly for a file
+tests/test_fiber.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_fiber.dir/build.make CMakeFiles/test_fiber.dir/tests/test_fiber.cpp.s
+.PHONY : tests/test_fiber.cpp.s
+
 tests/test_log.o: tests/test_log.cpp.o
 .PHONY : tests/test_log.o
 
@@ -410,12 +471,16 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... atpdxy"
 	@echo "... test_config"
+	@echo "... test_fiber"
 	@echo "... test_log"
 	@echo "... test_thread"
 	@echo "... test_util"
 	@echo "... atpdxy/config.o"
 	@echo "... atpdxy/config.i"
 	@echo "... atpdxy/config.s"
+	@echo "... atpdxy/fiber.o"
+	@echo "... atpdxy/fiber.i"
+	@echo "... atpdxy/fiber.s"
 	@echo "... atpdxy/log.o"
 	@echo "... atpdxy/log.i"
 	@echo "... atpdxy/log.s"
@@ -431,6 +496,9 @@ help:
 	@echo "... tests/test_config.o"
 	@echo "... tests/test_config.i"
 	@echo "... tests/test_config.s"
+	@echo "... tests/test_fiber.o"
+	@echo "... tests/test_fiber.i"
+	@echo "... tests/test_fiber.s"
 	@echo "... tests/test_log.o"
 	@echo "... tests/test_log.i"
 	@echo "... tests/test_log.s"

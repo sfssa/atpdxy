@@ -254,7 +254,8 @@ CMakeFiles/test_log.dir/tests/test_log.cpp.o: /home/pzx/atpdxy/tests/test_log.cp
   /usr/include/semaphore.h \
   /usr/include/x86_64-linux-gnu/bits/semaphore.h \
   /usr/include/c++/9/atomic \
-  /home/pzx/atpdxy/atpdxy/noncopyable.h
+  /home/pzx/atpdxy/atpdxy/noncopyable.h \
+  /home/pzx/atpdxy/atpdxy/thread.h
 
 
 /home/pzx/atpdxy/atpdxy/noncopyable.h:
@@ -382,6 +383,8 @@ CMakeFiles/test_log.dir/tests/test_log.cpp.o: /home/pzx/atpdxy/tests/test_log.cp
 /usr/include/c++/9/bits/uses_allocator.h:
 
 /usr/include/x86_64-linux-gnu/bits/errno.h:
+
+/home/pzx/atpdxy/atpdxy/thread.h:
 
 /usr/include/c++/9/cerrno:
 

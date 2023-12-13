@@ -13,13 +13,14 @@
 #include "util.h"
 #include "singleton.h"
 #include "mutex.h"
+#include "thread.h"
 
 // 当走出日志包装器的作用域后调用析构函数完成打印日志
 #define ATPDXY_LOG_LEVEL(logger, level) \
     if(logger->getLevel() <= level) \
         atpdxy::LogEventWrap(atpdxy::LogEvent::ptr(new atpdxy::LogEvent(logger, level, \
                         __FILE__, __LINE__, 0, atpdxy::GetThreadId(),\
-                atpdxy::GetFiberId(), time(0)))).getSS()
+                atpdxy::GetFiberId(), time(0), atpdxy::Thread::GetName()))).getSS()
 
 // 写debug级别日志
 #define ATPDXY_LOG_DEBUG(logger) ATPDXY_LOG_LEVEL(logger, atpdxy::LogLevel::DEBUG)
@@ -36,7 +37,7 @@
     if(logger->getLevel() <= level) \
         atpdxy::LogEventWrap(atpdxy::LogEvent::ptr(new atpdxy::LogEvent(logger, level, \
         __FILE__, __LINE__, 0, atpdxy::GetThreadId(), \
-        atpdxy::GetFiberId(), time(0)))).getEvent()->format(fmt, __VA_ARGS__)
+        atpdxy::GetFiberId(), time(0), atpdxy::Thread::GetName()))).getEvent()->format(fmt, __VA_ARGS__)
 
 // 格式化写入debug日志
 #define ATPDXY_LOG_FMT_DEBUG(logger, fmt, ...) ATPDXY_LOG_FMT_LEVEL(logger, atpdxy::LogLevel::DEBUG, fmt, __VA_ARGS__)
@@ -82,7 +83,7 @@ public:
     typedef std::shared_ptr<LogEvent> ptr;
     // 构造函数
     LogEvent(std::shared_ptr<Logger> logger, LogLevel::Level level, const char* file, int32_t line, uint32_t elapse, 
-        uint32_t thread_id, uint32_t fiber_id, uint64_t time);
+        uint32_t thread_id, uint32_t fiber_id, uint64_t time, const std::string& thread_name);
     // 获得文件名
     const char* getFile() const { return m_file;}
     // 获得行号
@@ -105,6 +106,7 @@ public:
     std::shared_ptr<Logger> getLogger() const { return m_logger;}
     // 获得日志事件的级别
     LogLevel::Level getLevel() const { return m_level;}
+    // 获得线程名称
     // 格式化日志内容
     void format(const char* fmt, ...);
     void format(const char* fmt, va_list al);

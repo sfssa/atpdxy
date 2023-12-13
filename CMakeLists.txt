@@ -14,7 +14,8 @@ set(LIB_SRC
     atpdxy/util.cpp
     atpdxy/config.cpp
     atpdxy/thread.cpp
-    atpdxy/mutex.cpp)
+    atpdxy/mutex.cpp
+    atpdxy/fiber.cpp)
 
 add_library(atpdxy SHARED ${LIB_SRC}) 
 # 重定义__FILE__为相对路径
@@ -48,6 +49,11 @@ add_executable(test_util tests/test_util.cpp)
 add_dependencies(test_util atpdxy)
 force_redefine_file_macro_for_sources(test_util)
 target_link_libraries(test_util ${LIBS})
+
+add_executable(test_fiber tests/test_fiber.cpp)
+add_dependencies(test_fiber atpdxy)
+force_redefine_file_macro_for_sources(test_fiber)
+target_link_libraries(test_fiber ${LIBS})
 
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
