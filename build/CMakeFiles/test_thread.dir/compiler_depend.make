@@ -751,8 +751,11 @@ CMakeFiles/test_thread.dir/tests/test_thread.cpp.o: /home/pzx/atpdxy/tests/test_
   /usr/include/semaphore.h \
   /usr/include/x86_64-linux-gnu/bits/semaphore.h \
   /home/pzx/atpdxy/atpdxy/noncopyable.h \
-  /home/pzx/atpdxy/atpdxy/thread.h
+  /home/pzx/atpdxy/atpdxy/thread.h \
+  /home/pzx/atpdxy/atpdxy/macro.h
 
+
+/home/pzx/atpdxy/atpdxy/macro.h:
 
 /home/pzx/atpdxy/atpdxy/noncopyable.h:
 
