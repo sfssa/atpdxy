@@ -128,10 +128,24 @@ CMakeFiles/atpdxy.dir/atpdxy/thread.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/atpdxy.dir/atpdxy/thread.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) -D__FILE__=\"atpdxy/thread.cpp\" $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pzx/atpdxy/atpdxy/thread.cpp -o CMakeFiles/atpdxy.dir/atpdxy/thread.cpp.s
 
+CMakeFiles/atpdxy.dir/atpdxy/scheduler.cpp.o: CMakeFiles/atpdxy.dir/flags.make
+CMakeFiles/atpdxy.dir/atpdxy/scheduler.cpp.o: /home/pzx/atpdxy/atpdxy/scheduler.cpp
+CMakeFiles/atpdxy.dir/atpdxy/scheduler.cpp.o: CMakeFiles/atpdxy.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pzx/atpdxy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/atpdxy.dir/atpdxy/scheduler.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) -D__FILE__=\"atpdxy/scheduler.cpp\" $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/atpdxy.dir/atpdxy/scheduler.cpp.o -MF CMakeFiles/atpdxy.dir/atpdxy/scheduler.cpp.o.d -o CMakeFiles/atpdxy.dir/atpdxy/scheduler.cpp.o -c /home/pzx/atpdxy/atpdxy/scheduler.cpp
+
+CMakeFiles/atpdxy.dir/atpdxy/scheduler.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/atpdxy.dir/atpdxy/scheduler.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) -D__FILE__=\"atpdxy/scheduler.cpp\" $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pzx/atpdxy/atpdxy/scheduler.cpp > CMakeFiles/atpdxy.dir/atpdxy/scheduler.cpp.i
+
+CMakeFiles/atpdxy.dir/atpdxy/scheduler.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/atpdxy.dir/atpdxy/scheduler.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) -D__FILE__=\"atpdxy/scheduler.cpp\" $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pzx/atpdxy/atpdxy/scheduler.cpp -o CMakeFiles/atpdxy.dir/atpdxy/scheduler.cpp.s
+
 CMakeFiles/atpdxy.dir/atpdxy/mutex.cpp.o: CMakeFiles/atpdxy.dir/flags.make
 CMakeFiles/atpdxy.dir/atpdxy/mutex.cpp.o: /home/pzx/atpdxy/atpdxy/mutex.cpp
 CMakeFiles/atpdxy.dir/atpdxy/mutex.cpp.o: CMakeFiles/atpdxy.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pzx/atpdxy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/atpdxy.dir/atpdxy/mutex.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pzx/atpdxy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/atpdxy.dir/atpdxy/mutex.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) -D__FILE__=\"atpdxy/mutex.cpp\" $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/atpdxy.dir/atpdxy/mutex.cpp.o -MF CMakeFiles/atpdxy.dir/atpdxy/mutex.cpp.o.d -o CMakeFiles/atpdxy.dir/atpdxy/mutex.cpp.o -c /home/pzx/atpdxy/atpdxy/mutex.cpp
 
 CMakeFiles/atpdxy.dir/atpdxy/mutex.cpp.i: cmake_force
@@ -145,7 +159,7 @@ CMakeFiles/atpdxy.dir/atpdxy/mutex.cpp.s: cmake_force
 CMakeFiles/atpdxy.dir/atpdxy/fiber.cpp.o: CMakeFiles/atpdxy.dir/flags.make
 CMakeFiles/atpdxy.dir/atpdxy/fiber.cpp.o: /home/pzx/atpdxy/atpdxy/fiber.cpp
 CMakeFiles/atpdxy.dir/atpdxy/fiber.cpp.o: CMakeFiles/atpdxy.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pzx/atpdxy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/atpdxy.dir/atpdxy/fiber.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pzx/atpdxy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/atpdxy.dir/atpdxy/fiber.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) -D__FILE__=\"atpdxy/fiber.cpp\" $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/atpdxy.dir/atpdxy/fiber.cpp.o -MF CMakeFiles/atpdxy.dir/atpdxy/fiber.cpp.o.d -o CMakeFiles/atpdxy.dir/atpdxy/fiber.cpp.o -c /home/pzx/atpdxy/atpdxy/fiber.cpp
 
 CMakeFiles/atpdxy.dir/atpdxy/fiber.cpp.i: cmake_force
@@ -162,6 +176,7 @@ atpdxy_OBJECTS = \
 "CMakeFiles/atpdxy.dir/atpdxy/util.cpp.o" \
 "CMakeFiles/atpdxy.dir/atpdxy/config.cpp.o" \
 "CMakeFiles/atpdxy.dir/atpdxy/thread.cpp.o" \
+"CMakeFiles/atpdxy.dir/atpdxy/scheduler.cpp.o" \
 "CMakeFiles/atpdxy.dir/atpdxy/mutex.cpp.o" \
 "CMakeFiles/atpdxy.dir/atpdxy/fiber.cpp.o"
 
@@ -172,11 +187,12 @@ atpdxy_EXTERNAL_OBJECTS =
 /home/pzx/atpdxy/lib/libatpdxy.so: CMakeFiles/atpdxy.dir/atpdxy/util.cpp.o
 /home/pzx/atpdxy/lib/libatpdxy.so: CMakeFiles/atpdxy.dir/atpdxy/config.cpp.o
 /home/pzx/atpdxy/lib/libatpdxy.so: CMakeFiles/atpdxy.dir/atpdxy/thread.cpp.o
+/home/pzx/atpdxy/lib/libatpdxy.so: CMakeFiles/atpdxy.dir/atpdxy/scheduler.cpp.o
 /home/pzx/atpdxy/lib/libatpdxy.so: CMakeFiles/atpdxy.dir/atpdxy/mutex.cpp.o
 /home/pzx/atpdxy/lib/libatpdxy.so: CMakeFiles/atpdxy.dir/atpdxy/fiber.cpp.o
 /home/pzx/atpdxy/lib/libatpdxy.so: CMakeFiles/atpdxy.dir/build.make
 /home/pzx/atpdxy/lib/libatpdxy.so: CMakeFiles/atpdxy.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pzx/atpdxy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX shared library /home/pzx/atpdxy/lib/libatpdxy.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pzx/atpdxy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX shared library /home/pzx/atpdxy/lib/libatpdxy.so"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/atpdxy.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

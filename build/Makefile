@@ -197,6 +197,19 @@ test_fiber/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_fiber.dir/build.make CMakeFiles/test_fiber.dir/build
 .PHONY : test_fiber/fast
 
+#=============================================================================
+# Target rules for targets named test_scheduler
+
+# Build rule for target.
+test_scheduler: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_scheduler
+.PHONY : test_scheduler
+
+# fast build rule for target.
+test_scheduler/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/build
+.PHONY : test_scheduler/fast
+
 atpdxy/config.o: atpdxy/config.cpp.o
 .PHONY : atpdxy/config.o
 
@@ -292,6 +305,30 @@ atpdxy/mutex.s: atpdxy/mutex.cpp.s
 atpdxy/mutex.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/atpdxy.dir/build.make CMakeFiles/atpdxy.dir/atpdxy/mutex.cpp.s
 .PHONY : atpdxy/mutex.cpp.s
+
+atpdxy/scheduler.o: atpdxy/scheduler.cpp.o
+.PHONY : atpdxy/scheduler.o
+
+# target to build an object file
+atpdxy/scheduler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/atpdxy.dir/build.make CMakeFiles/atpdxy.dir/atpdxy/scheduler.cpp.o
+.PHONY : atpdxy/scheduler.cpp.o
+
+atpdxy/scheduler.i: atpdxy/scheduler.cpp.i
+.PHONY : atpdxy/scheduler.i
+
+# target to preprocess a source file
+atpdxy/scheduler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/atpdxy.dir/build.make CMakeFiles/atpdxy.dir/atpdxy/scheduler.cpp.i
+.PHONY : atpdxy/scheduler.cpp.i
+
+atpdxy/scheduler.s: atpdxy/scheduler.cpp.s
+.PHONY : atpdxy/scheduler.s
+
+# target to generate assembly for a file
+atpdxy/scheduler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/atpdxy.dir/build.make CMakeFiles/atpdxy.dir/atpdxy/scheduler.cpp.s
+.PHONY : atpdxy/scheduler.cpp.s
 
 atpdxy/thread.o: atpdxy/thread.cpp.o
 .PHONY : atpdxy/thread.o
@@ -413,6 +450,30 @@ tests/test_log.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_log.dir/build.make CMakeFiles/test_log.dir/tests/test_log.cpp.s
 .PHONY : tests/test_log.cpp.s
 
+tests/test_scheduler.o: tests/test_scheduler.cpp.o
+.PHONY : tests/test_scheduler.o
+
+# target to build an object file
+tests/test_scheduler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/tests/test_scheduler.cpp.o
+.PHONY : tests/test_scheduler.cpp.o
+
+tests/test_scheduler.i: tests/test_scheduler.cpp.i
+.PHONY : tests/test_scheduler.i
+
+# target to preprocess a source file
+tests/test_scheduler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/tests/test_scheduler.cpp.i
+.PHONY : tests/test_scheduler.cpp.i
+
+tests/test_scheduler.s: tests/test_scheduler.cpp.s
+.PHONY : tests/test_scheduler.s
+
+# target to generate assembly for a file
+tests/test_scheduler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/tests/test_scheduler.cpp.s
+.PHONY : tests/test_scheduler.cpp.s
+
 tests/test_thread.o: tests/test_thread.cpp.o
 .PHONY : tests/test_thread.o
 
@@ -473,6 +534,7 @@ help:
 	@echo "... test_config"
 	@echo "... test_fiber"
 	@echo "... test_log"
+	@echo "... test_scheduler"
 	@echo "... test_thread"
 	@echo "... test_util"
 	@echo "... atpdxy/config.o"
@@ -487,6 +549,9 @@ help:
 	@echo "... atpdxy/mutex.o"
 	@echo "... atpdxy/mutex.i"
 	@echo "... atpdxy/mutex.s"
+	@echo "... atpdxy/scheduler.o"
+	@echo "... atpdxy/scheduler.i"
+	@echo "... atpdxy/scheduler.s"
 	@echo "... atpdxy/thread.o"
 	@echo "... atpdxy/thread.i"
 	@echo "... atpdxy/thread.s"
@@ -502,6 +567,9 @@ help:
 	@echo "... tests/test_log.o"
 	@echo "... tests/test_log.i"
 	@echo "... tests/test_log.s"
+	@echo "... tests/test_scheduler.o"
+	@echo "... tests/test_scheduler.i"
+	@echo "... tests/test_scheduler.s"
 	@echo "... tests/test_thread.o"
 	@echo "... tests/test_thread.i"
 	@echo "... tests/test_thread.s"

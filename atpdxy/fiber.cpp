@@ -3,7 +3,7 @@
 #include "config.h"
 #include "log.h"
 #include "macro.h"
-
+#include "scheduler.h"
 namespace atpdxy{
 static Logger::ptr g_logger = ATPDXY_LOG_NAME("system");
 // 协程id
@@ -35,12 +35,13 @@ using StackAllocator = MallocStackAllocator;
 Fiber::Fiber(){
     m_state = EXEC;
     SetThis(this);
+    
     // 获取当前上下文并保存到main_fiber的m_ctx中
     if(getcontext(&m_ctx)){
         ATPDXY_ASSERT2(false, "getcontext");
     }
     ++s_fiber_count;
-    ATPDXY_LOG_DEBUG(g_logger) << " Fiber::Fiber";
+    ATPDXY_LOG_DEBUG(g_logger) << " Fiber::Fiber main";
 }
 
 void Fiber::SetThis(Fiber* f){
@@ -48,7 +49,7 @@ void Fiber::SetThis(Fiber* f){
 }
 
 // 构造，包含协程执行的函数和栈空间
-Fiber::Fiber(std::function<void()> cb, size_t stacksize)
+Fiber::Fiber(std::function<void()> cb, size_t stacksize, bool use_caller)
     :m_id(++s_fiber_id), m_cb(cb){
     ++s_fiber_count;
     m_stacksize = stacksize ? stacksize : g_fiber_stack_size->getValue();
@@ -61,14 +62,19 @@ Fiber::Fiber(std::function<void()> cb, size_t stacksize)
     m_ctx.uc_stack.ss_sp = m_stack;
     m_ctx.uc_stack.ss_size = m_stacksize;
     // 制作新的上下文
-    makecontext(&m_ctx, &Fiber::MainFunc, 0);
+    if(!use_caller){
+        makecontext(&m_ctx, &Fiber::MainFunc, 0);
+    }else{
+        makecontext(&m_ctx, &Fiber::CallerMainFunc, 0);
+    }
+    
     ATPDXY_LOG_DEBUG(g_logger) << " Fiber::Fiber id=" << m_id;
 }
 
 Fiber::~Fiber(){
     --s_fiber_count;
     if(m_stack){
-        ATPDXY_ASSERT(m_state == TERM || m_state == INIT || m_state == EXCEPT);
+        ATPDXY_ASSERT(m_state == TERM || m_state == EXCEPT || m_state == INIT);
         StackAllocator::Dealloc(m_stack, m_stacksize);
     }else{
         // 没有栈说明是主协程，主协程一直运行
@@ -80,13 +86,14 @@ Fiber::~Fiber(){
             SetThis(nullptr);
         }
     }
-    ATPDXY_LOG_DEBUG(g_logger) << " Fiber::~Fiber id=" << m_id;
+    ATPDXY_LOG_DEBUG(g_logger) << " Fiber::~Fiber id=" << m_id
+        << " total=" << s_fiber_count;
 }
 
 // 重置协程执行函数
 void Fiber::reset(std::function<void()> cb){
     ATPDXY_ASSERT(m_stack);
-    ATPDXY_ASSERT(m_state ==TERM || m_state == INIT || m_state == EXCEPT);
+    ATPDXY_ASSERT(m_state ==TERM || m_state == EXCEPT || m_state == INIT);
     m_cb = cb;
     if(getcontext(&m_ctx)){
         ATPDXY_ASSERT2(false, "getcontext");
@@ -98,21 +105,36 @@ void Fiber::reset(std::function<void()> cb){
     m_state = INIT;
 }
 
+void Fiber::back(){
+    SetThis(t_threadFiber.get());
+    if(swapcontext(&m_ctx, &t_threadFiber->m_ctx)){
+        ATPDXY_ASSERT2(false, "swapcontext");
+    }
+}
+
+void Fiber::call(){
+    SetThis(this);
+    m_state = EXEC;
+    if(swapcontext(&t_threadFiber->m_ctx, &m_ctx)){
+        ATPDXY_ASSERT2(false, "swapcontext");
+    }
+}
+
 // 将当前协程加入到处理器中开始执行
 void Fiber::swapIn(){
     SetThis(this);
     ATPDXY_ASSERT(m_state != EXEC);
     m_state = EXEC;
     // 保存当前上下文并切换到目标上下文
-    if(swapcontext(&t_threadFiber->m_ctx, &m_ctx)){
+    if(swapcontext(&Scheduler::GetMainFiber()->m_ctx, &m_ctx)){
         ATPDXY_ASSERT2(false, "swapcontext");
     }
 }
 
 // 将当前协程移出处理器中停止执行
 void Fiber::swapOut(){
-    SetThis(t_threadFiber.get());
-    if(swapcontext(&m_ctx, &t_threadFiber->m_ctx)){
+    SetThis(Scheduler::GetMainFiber());
+    if(swapcontext(&m_ctx, &Scheduler::GetMainFiber()->m_ctx)){
         ATPDXY_ASSERT2(false, "swapcontext");
     }
 }
@@ -130,14 +152,14 @@ Fiber::ptr Fiber::GetThis(){
 // 协程切换到后台，将状态设置为Ready
 void Fiber::YieldToReady(){
     Fiber::ptr cur = GetThis();
-    // ATPDXY_ASSERT(cur->m_state == EXEC);
+    ATPDXY_ASSERT(cur->m_state == EXEC);
     cur->m_state = READY;
     cur->swapOut();
 }
 // 协程切换到后台，将状态设置为Hold
 void Fiber::YieldToHold(){
     Fiber::ptr cur = GetThis();
-    // ATPDXY_ASSERT(cur->m_state == EXEC);
+    ATPDXY_ASSERT(cur->m_state == EXEC);
     cur->m_state = HOLD;
     cur->swapOut();
 }
@@ -147,26 +169,61 @@ uint64_t Fiber::TotalFibers(){
     return s_fiber_count;
 }
 
-// 执行函数
-void Fiber::MainFunc(){
+void Fiber::MainFunc() {
     Fiber::ptr cur = GetThis();
     ATPDXY_ASSERT(cur);
-    try{
+    try {
         cur->m_cb();
         cur->m_cb = nullptr;
         cur->m_state = TERM;
-    }catch(std::exception& e){
+    } catch (std::exception& ex) {
         cur->m_state = EXCEPT;
-        ATPDXY_LOG_ERROR(g_logger) << " Fiber Except: " << e.what();
-    }catch(...){
+        ATPDXY_LOG_ERROR(g_logger) << "Fiber Except: " << ex.what()
+            << " fiber_id=" << cur->getId()
+            << std::endl
+            << atpdxy::BacktraceToString();
+    } catch (...) {
         cur->m_state = EXCEPT;
-        ATPDXY_LOG_ERROR(g_logger) << " Fiber Except";
+        ATPDXY_LOG_ERROR(g_logger) << "Fiber Except"
+            << " fiber_id=" << cur->getId()
+            << std::endl
+            << atpdxy::BacktraceToString();
     }
+
     auto raw_ptr = cur.get();
     cur.reset();
     raw_ptr->swapOut();
-    ATPDXY_ASSERT2(false, "never reach");
+
+    ATPDXY_ASSERT2(false, "never reach fiber_id=" + std::to_string(raw_ptr->getId()));
 }
+
+void Fiber::CallerMainFunc() {
+    Fiber::ptr cur = GetThis();
+    ATPDXY_ASSERT(cur);
+    try {
+        cur->m_cb();
+        cur->m_cb = nullptr;
+        cur->m_state = TERM;
+    } catch (std::exception& ex) {
+        cur->m_state = EXCEPT;
+        ATPDXY_LOG_ERROR(g_logger) << "Fiber Except: " << ex.what()
+            << " fiber_id=" << cur->getId()
+            << std::endl
+            << atpdxy::BacktraceToString();
+    } catch (...) {
+        cur->m_state = EXCEPT;
+        ATPDXY_LOG_ERROR(g_logger) << "Fiber Except"
+            << " fiber_id=" << cur->getId()
+            << std::endl
+            << atpdxy::BacktraceToString();
+    }
+
+    auto raw_ptr = cur.get();
+    cur.reset();
+    raw_ptr->back();
+    ATPDXY_ASSERT2(false, "never reach fiber_id=" + std::to_string(raw_ptr->getId()));
+}
+
 
 uint64_t Fiber::GetFiberId(){
     if(t_fiber){

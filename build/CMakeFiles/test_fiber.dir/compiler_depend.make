@@ -757,7 +757,8 @@ CMakeFiles/test_fiber.dir/tests/test_fiber.cpp.o: /home/pzx/atpdxy/tests/test_fi
   /usr/include/ucontext.h \
   /usr/include/x86_64-linux-gnu/bits/indirect-return.h \
   /usr/include/x86_64-linux-gnu/sys/ucontext.h \
-  /usr/include/x86_64-linux-gnu/bits/types/stack_t.h
+  /usr/include/x86_64-linux-gnu/bits/types/stack_t.h \
+  /home/pzx/atpdxy/atpdxy/scheduler.h
 
 
 /usr/include/x86_64-linux-gnu/sys/ucontext.h:
@@ -1159,6 +1160,8 @@ CMakeFiles/test_fiber.dir/tests/test_fiber.cpp.o: /home/pzx/atpdxy/tests/test_fi
 /usr/include/c++/9/list:
 
 /usr/include/c++/9/istream:
+
+/home/pzx/atpdxy/atpdxy/scheduler.h:
 
 /usr/include/boost/numeric/conversion/detail/meta.hpp:
 

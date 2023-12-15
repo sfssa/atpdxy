@@ -4,5 +4,6 @@
 /home/pzx/atpdxy/build/CMakeFiles/test_thread.dir
 /home/pzx/atpdxy/build/CMakeFiles/test_util.dir
 /home/pzx/atpdxy/build/CMakeFiles/test_fiber.dir
+/home/pzx/atpdxy/build/CMakeFiles/test_scheduler.dir
 /home/pzx/atpdxy/build/CMakeFiles/edit_cache.dir
 /home/pzx/atpdxy/build/CMakeFiles/rebuild_cache.dir
