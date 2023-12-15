@@ -4,7 +4,8 @@
 #include <string.h>
 #include <functional>
 #include "thread.h"
-
+// 第一次执行Fiber时通过SetThis()将调用Fiber的线程上下文切换到主协程中，
+// 也就是私有的构造函数创建的协程
 // 协程相比于线程更加轻量级，切花更快
 namespace atpdxy{
 // 能够获取当前类的智能指针，允许一个对在生命周期内以智能指针的形式与其他对象共享
